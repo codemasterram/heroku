@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="todo-form">
+    <form method="post" action="{% url 'submission' %}">
+       {% csrf_token %}
+       {% include 'messages.html' %}
+       <div class="form-group">
+            <label for="input-todo-title">Username</label>
+            <input type="text"
+                name="username" class="form-control"
+                id="input-todo-title"
+                placeholder="Enter username"
+                value="{{todo.title}}"
+                />
+        </div>
+        <div class="form-group">
+            <label for="input-todo-title">Password</label>
+            <input type="password"
+                name="password" class="form-control"
+                id="input-todo-title"
+                placeholder="Enter password"
+                value="{{todo.title}}"
+                />
+        </div>
+
+      <!--   {% csrf_token %}
+        <div class="form-group">
+            <label for="input-todo-title">Title</label>
+            <input type="text"
+                name="title" class="form-control"
+                id="input-todo-title"
+                placeholder="What do you want to do?"
+                value="{{todo.title}}"
+                />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description"
+                placeholder="Description">{% if todo.description is not None %}{{todo.description}}{% endif %}</textarea>
+                <div class="ckeckbox">
+                   <input type="radio" name="checkbox" value='True'> Yes
+                   <input type="radio" name="checkbox" value='False' checked>No
+                </div>
+                
+
+
+        </div> -->
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}

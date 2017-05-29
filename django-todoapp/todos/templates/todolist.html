@@ -1,0 +1,68 @@
+
+<div class="row marketing">
+    <div class="todolist list-group">
+        <ul class="list-unstyled">
+            {%  if not items%}
+                <div class="alert alert-warning text-center">
+                    <p>No Items in the list</p>
+                    <br>
+                    <a class="btn btn-lg btn-success" href="{% url 'index' %}" role="button">Back To Main Page</a>
+                </div>
+            {%else%}
+             <div class="container">
+               <div class="row ">
+                    <h2 class="text-center">Hastag List</h2> 
+                    {% for item in tags %}
+                        <div class="col-md-offset-4">
+                            <p><a href="{% url 'hastagg' item.id%}" data-id="{{item.id}}">{{item.title}}</a></p>
+                        </div>
+                    {% endfor %}                   
+               </div>
+           </div> 
+
+                    <ul class="pagination">
+                      <li class="{% if  filter != 'pending' and filter != 'completed' %} active {% endif %}"> <a href="{% url 'index' %}?filter=all"  >All</a></li>
+
+                      <li class="{% if filter == 'pending' %}active{% endif %}"><a href="{% url 'index' %}?filter=pending" >Pending </a></li>
+                      <li class="{% if filter == 'completed' %}active{% endif %}"><a href="{% url 'index' %}?filter=completed" >Completed </a></li> 
+                    </ul>
+                <div class="table-responsive">
+                <table class="table table-condensed table-hover table-bordered">
+                        <tr class="info">
+                            <th class="text-center">Status 
+                                       
+                            </th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Description</th>
+                            <th class="text-center">Action's</th>
+                           
+                        </tr>
+                        {% for item in items %}
+                        <tr >
+                            <td class='text-center'>
+
+                            <!-- <input 
+                                type="checkbox" {% if item.completed %}checked{% endif %} 
+                                data-id="{{item.id}}" class="todo-complete-check" /> -->
+                                <input type="checkbox" {% if item.completed %}checked{% endif %} data-id="{{item.id}}" class="todo-complete-check" name="">
+
+                            </td>
+                            <td class="text-center success headd"><h4 >{{item.title}} </h4></td>
+                            <td class="text-center warning"><h4 >{{item.description}}</strong></h4></td>
+                            <td class="text-center"><a href="{% url 'edit' item.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                <a href="{% url 'remove' item.id %}" class="hataune remove" data-id="{{item.id}}" ><span class="glyphicon glyphicon-remove " ></span> Remove</a></td>
+                           
+                        </tr>
+
+            {% endfor %}
+
+
+            {%endif%}
+            
+                `
+            
+            </table>
+            </div>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %} {% block content%}
+{% include 'messages.html' %}
+
+
+{% if user.is_authenticated%}
+
+	{% include 'todolist.html' %}
+
+{% else%}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="jumbotron">
+			<h2>Welcome to Todo Page.</h2>
+			<br><br>
+
+		<p class="lead">You need to <a href="{% url 'login' %}">login</a> first</p>
+	</div>
+</div>
+{% endif%}
+{% endblock %}
